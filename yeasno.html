@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .ga_form_yesno {
+            --check-size: 1rem;
+            --ascender: 1.2; /* depends on font */
+            --text-height: calc( var(--check-size) * var(--ascender) );
+            --text-margin: calc( var(--text-height) * .4);
+            --yes-text-color: green;
+            --no-text-color: red;
+            --alt-color: rgb(225, 225, 225);
+            --no-text-content: 'NO';
+            --yes-text-content: 'YES';
+            display: flex;
+            gap: 1rem;
+        }
+
+        .ga_form_yesno label {
+            order: 100;
+        }
+
+        .ga_form_yesno input {
+            --no-color: var(--no-text-color);
+            --yes-color: var(--alt-color);
+            --state-color: var(--no-text-color);
+
+            -webkit-appearance: none;
+            appearance: none;
+
+            font-size: var(--check-size);
+            width: calc( var(--check-size) * 5);
+            height: calc( (var(--check-size) * var(--ascender) ) + var(--text-margin) * 2);
+            position: relative;
+            outline: 4px solid var(--state-color);
+            border-radius: 1000px;
+
+        }
+
+        .ga_form_yesno input::before {
+            /* NO */
+            position: absolute;
+            color: var(--no-color);
+            content: var(--no-text-content);
+            top: calc(50% - (var(--text-height) * .5 ));
+            right: .5rem;
+        }
+
+        .ga_form_yesno input::after {
+            /* YES */
+            position: absolute;
+            color: var(--yes-color);
+            content: var(--yes-text-content);
+            top: calc(50% - (var(--text-height) * .5 ));
+            left: .5rem;
+        }
+
+
+        .ga_form_yesno input:checked {
+            --no-color: var(--alt-color);
+            --yes-color: var(--yes-text-color);
+            --state-color: var(--yes-text-color);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ga_form_yesno"><label for="input_643d51f016cdf">I'm a little teacup</label><input
+            id="input_643d51f016cdf" type="checkbox" name="" class="beefy" value="" data-gtm-form-interact-field-id="0">
+    </div>
+
+</body>
+
+</html>
