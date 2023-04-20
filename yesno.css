@@ -1,26 +1,28 @@
-.ga_form_yesno {
-    --check-size: 1rem;
-    --ascender: 1.2;
-    /* depends on font */
+.form_group_class {
+    --check-size: 3rem;
+    --ascender: 1.2;   /* depends on font */
+    --transition-duration: .3s ease;
+    --yes-color: green;
+    --no-color: red;
+    --focus-color: rgb(216, 252, 54);
+
+    /* - You probably shouldn't need to change the vars below - */
+    --half-size: calc(var(--check-size) * .5);
     --text-height: calc(var(--check-size) * var(--ascender));
     --text-margin: calc(var(--text-height) * .4);
-    --yes-text-color: green;
-    --no-text-color: red;
-    --alt-color: rgb(225, 225, 225);
     --no-text-content: 'NO';
     --yes-text-content: 'YES';
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: var(--check-size);
 }
 
-.ga_form_yesno label {
-    order: 100;
+.form_group_class label {
+    order: 100; /* Let's us change the order of input elements */
 }
 
-.ga_form_yesno input {
-    --no-color: var(--no-text-color);
-    --yes-color: var(--alt-color);
-    --state-color: var(--no-text-color);
+.form_group_class input {
+    --state-color: var(--no-color);
     background:
     radial-gradient(
         circle,
@@ -40,35 +42,52 @@
     position: relative;
     outline: 4px solid var(--state-color);
     border-radius: 1000px;
+    transition: background var(--transition-duration), outline var(--transition-duration);
+    overflow: hidden;
+}
+.form_group_class input:focus-visible,
+.form_group_class input:checked:focus-visible {
+    outline: 8px solid var(--focus-color);
+}
+
+
+.form_group_class input:checked {
+    --state-color: var(--yes-color);
+    background-position: right calc(var(--check-size) * .1) top 50%;
+}
+
+
+.form_group_class input::before,
+.form_group_class input::after {
+    position: absolute;
+    top: calc(50% - (var(--text-height) * .5));
+
 
 }
 
-.ga_form_yesno input:not(:checked)::before {
+
+
+.form_group_class input::before {
     /* NO */
-    position: absolute;
     color: var(--no-color);
     content: var(--no-text-content);
-    top: calc(50% - (var(--text-height) * .5));
-    right: .5rem;
+    right: var(--half-size);
+    transition: right var(--transition-duration);
+}
+.form_group_class input:checked::before {
+    right: calc(0px - var(--check-size) * 2);
 }
 
-.ga_form_yesno input:checked::after {
+
+.form_group_class input::after {
     /* YES */
-    position: absolute;
     color: var(--yes-color);
     content: var(--yes-text-content);
-    top: calc(50% - (var(--text-height) * .5));
-    left: .5rem;
+    left: var(--half-size);
+    transition: left var(--transition-duration);
 
 }
-
-
-.ga_form_yesno input:checked {
-    --no-color: var(--alt-color);
-    --yes-color: var(--yes-text-color);
-    --state-color: var(--yes-text-color);
-    background-position: right calc(var(--check-size) * .1) top 50%;
-
-
-
+.form_group_class input:not(:checked)::after {
+    left: calc(0px - var(--check-size) * 2);
 }
+
