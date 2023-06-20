@@ -1,5 +1,5 @@
 .form_group_class {
-    --check-size: 3rem;
+    --check-size: 1rem;
     --ascender: 1.2;   /* depends on font */
     --transition-duration: .3s ease;
     --yes-color: green;
@@ -10,6 +10,7 @@
     --half-size: calc(var(--check-size) * .5);
     --text-height: calc(var(--check-size) * var(--ascender));
     --text-margin: calc(var(--text-height) * .4);
+    --frame-width: calc( max(var(--check-size) * .25 , 2px));
     --no-text-content: 'NO';
     --yes-text-content: 'YES';
     display: flex;
@@ -37,17 +38,17 @@
     appearance: none;
 
     font-size: var(--check-size);
-    width: calc(var(--check-size) * 5);
+    width: calc(var(--check-size) * 5); /* YES + NO, make bigger if longer text */
     height: calc((var(--check-size) * var(--ascender)) + var(--text-margin) * 2);
     position: relative;
-    outline: 4px solid var(--state-color);
+    outline: var(--frame-width) solid var(--state-color);
     border-radius: 1000px;
     transition: background var(--transition-duration), outline var(--transition-duration);
     overflow: hidden;
 }
 .form_group_class input:focus-visible,
 .form_group_class input:checked:focus-visible {
-    outline: 8px solid var(--focus-color);
+    outline: calc(var(--frame-width) * 2) solid var(--focus-color);
 }
 
 
@@ -61,11 +62,7 @@
 .form_group_class input::after {
     position: absolute;
     top: calc(50% - (var(--text-height) * .5));
-
-
 }
-
-
 
 .form_group_class input::before {
     /* NO */
@@ -85,7 +82,6 @@
     content: var(--yes-text-content);
     left: var(--half-size);
     transition: left var(--transition-duration);
-
 }
 .form_group_class input:not(:checked)::after {
     left: calc(0px - var(--check-size) * 2);
