@@ -1,0 +1,16 @@
+
+
+.DS_Store
+.svn
+.cvs
+*.bak
+*.swp
+Thumbs.db
+node_modules/
+backups-*/
+*.log
+package-lock.json
+
+
+# project and IDE settings for individual devs:
+.vscode/**/*
