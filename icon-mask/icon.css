@@ -1,0 +1,45 @@
+/*--_icon-src:icons/icon1.svg;
+--_tint=#3434120;
+--_width:30px;
+--_height:30px;
+*/
+
+.tinted-icon {
+    outline: 2px solid red;
+    display: inline-block;
+    position: relative;
+
+}
+
+.tinted-icon img {
+    width: var(--_width, 100%);
+    height: var(--_height, 100%);
+}
+
+ /* if the browser supports masks, use those and hide the default */
+ @supports (mask-size: 100%) or (-webkit-mask-size: 100%) {
+     .tinted-icon {
+         mask-image: url(icons/icon1.png);
+         -webkit-mask-image: url(icons/icon1.png);
+         mask-size: contain;
+         -webkit-mask-size: contain;
+         mask-repeat: no-repeat;
+         -webkit-mask-repeat: no-repeat;
+         mask-position: center;
+         -webkit-mask-position: center;
+         background: var(--_tint, currentColor);
+     }
+        .tinted-icon::after {
+             position: absolute;
+             content: '';
+             inset: 0px;
+             z-index: 2;
+             background-image: var(--_icon-src);
+             background-size: contain;
+             visibility: hidden;
+        }
+
+     .tinted-icon img {
+         visibility: hidden;
+     }
+ }

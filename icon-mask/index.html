@@ -11,14 +11,39 @@
 </head>
 
 <body>
-    <div>
-      <div 
-      class="tinted-icon" 
-      style="--_icon-src:icons/icon1.svg; --_tint=#3434120; --_width:30px; --_height:30px;"
-      >
-      
-    </div>
+    <main>
+        <section>
+            <h1>Demo for tinted (colorized) icons using masks</h1>
+            <p><em>Note:</em> Browsers will not load local ("file://") files as masks.
+            </p>
+        </section>
+        <div class="icon-demo">
+            <div>
+                <h2>svg icon with defined size and fallback</h2>
+                <div class="tinted-icon"
+                    style="--_icon-src:url(icons/icon1.svg); --_tint:purple; --_width:30px; --_height:30px;">
+                    <img src="icons/icon1.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </main>
+    <style>
+        html {
+            font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+            /* https://modernfontstacks.com/ */
+        }
 
+        .icon-demo {
+            display: flex;
+        }
+        
+        .icon-demo h2 {
+            font-size: 1.25rem;
+            font-weight: 200;
+            text-transform: uppercase;
+
+        }
+    </style>
 </body>
 
 </html>
